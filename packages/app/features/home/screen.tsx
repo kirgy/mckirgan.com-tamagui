@@ -1,82 +1,198 @@
-import { Anchor, Button, H1, Input, Paragraph, Separator, Sheet, XStack, YStack } from '@my/ui'
-import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import React, { useState } from 'react'
+import {
+  Anchor,
+  Button,
+  H1,
+  Paragraph,
+  Separator,
+  Sheet,
+  XStack,
+  YStack,
+  Image,
+  type TamaguiElement,
+  H2,
+  Stack,
+  useMedia,
+  Text,
+  AnimatePresence,
+  styled,
+  Square,
+  Circle,
+  ButtonFrame,
+  Spinner,
+  H3,
+  H4,
+} from '@my/ui'
+import { ArrowDown, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
+import WebContainer from 'app/features/app/WebContainer'
+// import { LinearGradient } from 'expo-linear-gradient'
+import { LinearGradient } from '@tamagui/linear-gradient'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Dimensions, LayoutChangeEvent, useWindowDimensions, View } from 'react-native'
 import { useLink } from 'solito/link'
+import Typed from 'react-typed'
+import CONSTANTS from '../../../lib/constants'
+import HomeProfile from 'app/features/home/HomeProfile'
+
+const chrisProfileImage = require('app/features/home/assets/chris-profile-home-mobile.jpg')
+const chrisProfileLargeImage = require('app/features/home/assets/chris-profile-home-large.jpg')
+const chrisProfileDesktopImage = require('app/features/home/assets/chris-profile-desktop.jpg')
+
+const logoBBCMaestro = require('app/features/home/assets/logos/bbcmaestro.png')
+const logoJanssen = require('app/features/home/assets/logos/janssenoncology.jpg')
+const logoMarmite = require('app/features/home/assets/logos/marmite.jpg')
+const logoHL = require('app/features/home/assets/logos/hargreaveslansdown.jpg')
+const caseStudyBBCMaestroComingSoon = require('app/features/home/assets/caseStudies/bbcmaestroComingSoon.png')
+
+export type WorkExcerpts = Array<{
+  company: string
+  text: string
+  image: string
+  imageRatio: number
+}>
+
+const WORK_EXCERPTS: WorkExcerpts = [
+  {
+    company: 'BBCMAESTRO',
+    text: 'I put the worlds experts at your fingertips.',
+    image: logoBBCMaestro,
+    imageRatio: 1,
+  },
+  {
+    company: 'MARMITE',
+    text: 'I let you put your name on it.',
+    image: logoMarmite,
+    imageRatio: 1,
+  },
+  {
+    company: 'JANSSEN',
+    text: 'I enabled cancer surgeons to get instant medical advise.',
+    image: logoJanssen,
+    imageRatio: 772 / 386,
+  },
+  {
+    company: 'HL',
+    text: 'I helped keep your money secure.',
+    image: logoHL,
+    imageRatio: 668 / 350,
+  },
+]
+
+const AnimatableSquare = styled(Square, {
+  variants: {
+    fromRight: {
+      true: {
+        x: 1000,
+      },
+    },
+    fromLeft: {
+      true: {
+        x: -1000,
+      },
+    },
+  },
+})
 
 export function HomeScreen() {
+  const [containerDimensions, setContainerDimensions] = useState({ height: 0, width: 0 })
+  const [headerDimensions, setHeaderDimensions] = useState({ height: 0, width: 0 })
+  const [activeWorkExcerptIndex, setActiveWorkExcerptIndex] = useState(0)
+  const [showExcerptImage, setShowExcerptImage] = useState(false)
+  const [workExcerptsAllShown, setWorkExcerptsAllShown] = useState(false)
+  const [pageLoaded, setPageLoaded] = useState(false)
+
+  const [{ windowHeight, windowWidth }, setWindowDimensions] = useState({
+    windowHeight: 0,
+    windowWidth: 0,
+  })
+
+  // this is initially set server-side which will result in 0 values on first render
+  const unsafeDimensions = useWindowDimensions()
+
+  useEffect(() => {
+    setPageLoaded(true)
+  }, [])
+
+  useEffect(() => {
+    if (!pageLoaded) return
+
+    setWindowDimensions({
+      windowWidth: unsafeDimensions.width,
+      windowHeight: unsafeDimensions.height,
+    })
+  }, [pageLoaded, unsafeDimensions])
+
+  const screenRatio = useMemo(() => {
+    return containerDimensions.height / containerDimensions.width
+  }, [containerDimensions])
+
+  const workExcerptsText = useMemo(() => {
+    return WORK_EXCERPTS.map((excerpt) => excerpt.text)
+  }, [])
+
+  const onStringTyped = useCallback(
+    (activeIndex: number) => {
+      setShowExcerptImage(true)
+      setActiveWorkExcerptIndex(activeIndex)
+      console.log({ activeIndex, self })
+    },
+    [setActiveWorkExcerptIndex, setShowExcerptImage]
+  )
+
+  useEffect(() => {
+    if (showExcerptImage) {
+      const timeout = setTimeout(() => {
+        setShowExcerptImage(false)
+      }, 4_000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [showExcerptImage])
+
   const linkProps = useLink({
     href: '/user/nate',
   })
 
+  console.log({ c: containerDimensions.height, d: headerDimensions.height })
   return (
-    <YStack f={1} jc="center" ai="center" p="$4" space>
-      <YStack space="$4" maw={600}>
-        <H1 ta="center">Welcome to Tamagui.</H1>
-        <Paragraph ta="center">
-          Here's a basic starter to show navigating from one screen to another. This screen uses the
-          same code on Next.js and React Native.
-        </Paragraph>
-
-        <Separator />
-        <Paragraph ta="center">
-          Made by{' '}
-          <Anchor color="$color12" href="https://twitter.com/natebirdman" target="_blank">
-            @natebirdman
-          </Anchor>
-          ,{' '}
-          <Anchor
-            color="$color12"
-            href="https://github.com/tamagui/tamagui"
-            target="_blank"
-            rel="noreferrer"
-          >
-            give it a ⭐️
-          </Anchor>
-        </Paragraph>
+    <WebContainer
+      onLayout={(event) => {
+        console.log({ event: event.nativeEvent.layout.height })
+        setContainerDimensions({
+          height: Dimensions.get('screen').height,
+          width: Dimensions.get('screen').width,
+        })
+      }}
+      onHeaderLayout={(height, width) => {
+        setHeaderDimensions({
+          height,
+          width,
+        })
+      }}
+      headerProps={{
+        px: '$5',
+        maxWidth: CONSTANTS.LAYOUT_MAX_WIDTH,
+      }}
+      maxWidth={windowWidth}
+      overflow="hidden"
+      innerContainer={{
+        width: '100%',
+        px: 0,
+        flex: 0,
+      }}
+      px={0}
+    >
+      <YStack space={0}>
+        <YStack
+          space={0}
+          minHeight={windowHeight - headerDimensions.height}
+          overflow="hidden"
+          // backgroundColor="#ff00ff"
+        >
+          <HomeProfile workExcerpts={WORK_EXCERPTS} />
+        </YStack>
+        <Stack minHeight={windowHeight} backgroundColor="#d55a00" />
+        <Stack minHeight={windowHeight} backgroundColor="#ffff00" />
       </YStack>
-
-      <XStack>
-        <Button {...linkProps}>Link to user</Button>
-      </XStack>
-
-      <SheetDemo />
-    </YStack>
-  )
-}
-
-function SheetDemo() {
-  const [open, setOpen] = useState(false)
-  const [position, setPosition] = useState(0)
-  return (
-    <>
-      <Button
-        size="$6"
-        icon={open ? ChevronDown : ChevronUp}
-        circular
-        onPress={() => setOpen((x) => !x)}
-      />
-      <Sheet
-        modal
-        open={open}
-        onOpenChange={setOpen}
-        snapPoints={[80]}
-        position={position}
-        onPositionChange={setPosition}
-        dismissOnSnapToBottom
-      >
-        <Sheet.Overlay />
-        <Sheet.Frame ai="center" jc="center">
-          <Sheet.Handle />
-          <Button
-            size="$6"
-            circular
-            icon={ChevronDown}
-            onPress={() => {
-              setOpen(false)
-            }}
-          />
-        </Sheet.Frame>
-      </Sheet>
-    </>
+    </WebContainer>
   )
 }

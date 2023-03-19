@@ -1,10 +1,11 @@
-import { createTamagui } from 'tamagui'
+import { createTamagui, type CreateTamaguiProps } from 'tamagui'
 import { createInterFont } from '@tamagui/font-inter'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
 import { createMedia } from '@tamagui/react-native-media-driver'
 
 import { animations } from './animations'
+import { createFiraMonoFont } from '@tamagui/font-fira-mono'
 
 const headingFont = createInterFont({
   size: {
@@ -49,6 +50,11 @@ const bodyFont = createInterFont(
     sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
   }
 )
+const workExcertFont = createFiraMonoFont({
+  face: {
+    100: { normal: 'FiraMonoRegular' },
+  },
+}) as typeof bodyFont
 
 export const config = createTamagui({
   animations,
@@ -58,6 +64,7 @@ export const config = createTamagui({
   fonts: {
     heading: headingFont,
     body: bodyFont,
+    firaMono: workExcertFont,
   },
   themes,
   tokens,

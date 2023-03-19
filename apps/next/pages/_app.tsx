@@ -8,6 +8,7 @@ import { Provider } from 'app/provider'
 import Head from 'next/head'
 import React, { startTransition } from 'react'
 import type { SolitoAppProps } from 'solito'
+import { Stack, YStack } from '@my/ui'
 
 function MyApp({ Component, pageProps }: SolitoAppProps) {
   return (
@@ -18,7 +19,11 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider>
-        <Component {...pageProps} />
+        <YStack width="100%" minHeight="100%" flex={1} alignSelf="center" backgroundColor="#06050c">
+          <Stack display="flex" flex={1}>
+            <Component {...pageProps} />
+          </Stack>
+        </YStack>
       </ThemeProvider>
     </>
   )
