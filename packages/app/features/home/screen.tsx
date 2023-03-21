@@ -32,6 +32,8 @@ import { useLink } from 'solito/link'
 import Typed from 'react-typed'
 import CONSTANTS from '../../../lib/constants'
 import HomeProfile from 'app/features/home/HomeProfile'
+import { BBCMaestroCaseStudy } from 'app/features/home/caseStudies/bbcMaestro/BBCMaestroCaseStudy'
+import CarescribeCaseStudy from 'app/features/home/caseStudies/carescribe/CarescribeCaseStudy'
 
 const chrisProfileImage = require('app/features/home/assets/chris-profile-home-mobile.jpg')
 const chrisProfileLargeImage = require('app/features/home/assets/chris-profile-home-large.jpg')
@@ -41,7 +43,6 @@ const logoBBCMaestro = require('app/features/home/assets/logos/bbcmaestro.png')
 const logoJanssen = require('app/features/home/assets/logos/janssenoncology.jpg')
 const logoMarmite = require('app/features/home/assets/logos/marmite.jpg')
 const logoHL = require('app/features/home/assets/logos/hargreaveslansdown.jpg')
-const caseStudyBBCMaestroComingSoon = require('app/features/home/assets/caseStudies/bbcmaestroComingSoon.png')
 
 export type WorkExcerpts = Array<{
   company: string
@@ -182,16 +183,16 @@ export function HomeScreen() {
       px={0}
     >
       <YStack space={0}>
-        <YStack
-          space={0}
-          minHeight={windowHeight - headerDimensions.height}
-          overflow="hidden"
-          // backgroundColor="#ff00ff"
-        >
+        <YStack space={0} minHeight={windowHeight - headerDimensions.height} overflow="hidden">
           <HomeProfile workExcerpts={WORK_EXCERPTS} />
         </YStack>
-        <Stack minHeight={windowHeight} backgroundColor="#d55a00" />
-        <Stack minHeight={windowHeight} backgroundColor="#ffff00" />
+
+        <Stack minHeight={windowHeight} flex={1}>
+          <BBCMaestroCaseStudy />
+        </Stack>
+        <Stack minHeight={windowHeight}>
+          <CarescribeCaseStudy />
+        </Stack>
       </YStack>
     </WebContainer>
   )

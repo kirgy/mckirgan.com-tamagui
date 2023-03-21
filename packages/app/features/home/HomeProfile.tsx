@@ -13,7 +13,6 @@ const logoBBCMaestro = require('app/features/home/assets/logos/bbcmaestro.png')
 const logoJanssen = require('app/features/home/assets/logos/janssenoncology.jpg')
 const logoMarmite = require('app/features/home/assets/logos/marmite.jpg')
 const logoHL = require('app/features/home/assets/logos/hargreaveslansdown.jpg')
-const caseStudyBBCMaestroComingSoon = require('app/features/home/assets/caseStudies/bbcmaestroComingSoon.png')
 
 type HomeProfileProps = {
   workExcerpts: WorkExcerpts
