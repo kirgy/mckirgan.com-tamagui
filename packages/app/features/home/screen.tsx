@@ -34,6 +34,8 @@ import CONSTANTS from '../../../lib/constants'
 import HomeProfile from 'app/features/home/HomeProfile'
 import { BBCMaestroCaseStudy } from 'app/features/home/caseStudies/bbcMaestro/BBCMaestroCaseStudy'
 import CarescribeCaseStudy from 'app/features/home/caseStudies/carescribe/CarescribeCaseStudy'
+import { JanssenCaseStudy } from 'app/features/home/caseStudies/janssen/JanssenCaseStudy'
+import { HargreavesLansdownCaseStudy } from 'app/features/home/caseStudies/hargreaveslansdown/HargreavesLansdownCaseStudy'
 
 const chrisProfileImage = require('app/features/home/assets/chris-profile-home-mobile.jpg')
 const chrisProfileLargeImage = require('app/features/home/assets/chris-profile-home-large.jpg')
@@ -192,6 +194,12 @@ export function HomeScreen() {
         </Stack>
         <Stack minHeight={windowHeight}>
           <CarescribeCaseStudy />
+        </Stack>
+        <Stack minHeight={windowHeight}>
+          <JanssenCaseStudy />
+        </Stack>
+        <Stack minHeight={windowHeight}>
+          <HargreavesLansdownCaseStudy />
         </Stack>
       </YStack>
     </WebContainer>

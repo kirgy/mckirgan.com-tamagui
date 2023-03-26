@@ -1,4 +1,4 @@
-import { H1, H2, Image, YStack, Text, Stack, XStack } from '@my/ui'
+import { H1, H2, Image, YStack, Text, Stack, XStack, Button } from '@my/ui'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
 import CONSTANTS from '../../../../../lib/constants'
@@ -40,13 +40,11 @@ export function BBCMaestroCaseStudy() {
               aspectRatio={0.75}
               width={(containerDimensions.width || 1) * 0.9}
               maxHeight={500}
-              // width={'100%'}
-              // backgroundColor="#ff00ff"
               resizeMode="contain"
               alignSelf="center"
             />
           </Stack>
-          <Stack py="$5" space="$5" flex={1}>
+          <Stack pt="$5" space="$5" flex={1}>
             <Text fontFamily="roboto" fontSize={22}>
               BBC Maestro provides on demand video based courses from the leading figures in their
               field. Historically, this has been confined to their web platform which meant their
@@ -62,11 +60,16 @@ export function BBCMaestroCaseStudy() {
               I owned the technical development of the project, working closely with the CTO,
               product owner, designer and other stakeholders, I was able to bring a robust, scalable
               feature-complete application through testing and bug-fixing, ready for public launch,
-              before handing off the project to the new perminant developers which will continue
+              before handing off the project to the new perminant developers who will continue
               project maintainance.
             </Text>
           </Stack>
         </XStack>
+        <Stack alignItems="flex-start" pb="$5">
+          <Button flex={0} backgroundColor="#ffffff" color="#d55a00" size="$5">
+            Find out about BBC Maestro
+          </Button>
+        </Stack>
       </YStack>
     </Stack>
   )
