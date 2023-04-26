@@ -53,7 +53,7 @@ const SiteFooter = () => {
               textAlign="left"
               onPress={() => handleSocialPress('twitter')}
             >
-              <Twitter size={15} onPress={() => handleSocialPress('twitter')} />
+              <Twitter size={15} />
             </ListItem>
           </XGroup.Item>
           <XGroup.Item>

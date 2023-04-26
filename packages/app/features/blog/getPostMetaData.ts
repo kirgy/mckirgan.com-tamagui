@@ -16,7 +16,7 @@ const getPostMetaData = async (): Promise<PostMetadata[]> => {
   // const files = await FileSystem.readDirectoryAsync(folder)
 
   const markdownPosts = files.filter((file) => file.endsWith('.md'))
-  console.log({ markdownPosts })
+  // console.log({ markdownPosts })
 
   const postmeta = markdownPosts.map(async (fileName) => {
     const fileContents = fs.readFileSync(`./articles/${fileName}`, 'utf8')
@@ -31,7 +31,7 @@ const getPostMetaData = async (): Promise<PostMetadata[]> => {
     }
   })
 
-  console.log({ postmeta })
+  // console.log({ postmeta })
 
   return await Promise.all(postmeta)
 }

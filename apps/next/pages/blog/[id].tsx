@@ -2,7 +2,7 @@ import matter from 'gray-matter'
 import getPostMetaData from 'app/features/blog/getPostMetaData'
 import path from 'path'
 import fs from 'fs'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, Metadata, ResolvingMetadata } from 'next'
 import BlogEntry from 'app/features/blog/BlogEntry'
 import ReactMarkdown from 'react-markdown'
 import { blogComponents } from '@my/ui/src'
@@ -22,7 +22,7 @@ const BlogArticle = (props: any) => {
     <BlogEntry
       url={`${CONSTANTS.DOMAIN_URL}/blog/${props.slug}`}
       title={matterResult.data.title}
-      image={props.banner}
+      image={matterResult.data.imageBanner}
       publishedDate={matterResult.data.publishedDate}
       articleReadTimeMinutes={5}
       social={{
@@ -39,37 +39,40 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-// export async function generateMetadata(
-//   { params, searchParams }: Props,
-//   parent?: ResolvingMetadata,
-// ): Promise<Metadata> {
-//   // read route params
-//   const id = params.id;
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const previousImages = (await parent)?.openGraph?.images || []
 
-//   // fetch data
-//   const product = await fetch(`https://.../${id}`).then((res) => res.json());
+  const postsDirectory = path.join(process.cwd(), '../../packages/app/features/blog/articles/')
+  const filePath = path.join(postsDirectory, `${params.id}/article.md`)
+  const imagePaths = {
+    facebook: `/blog/social/${params.id}/facebook.png`,
+  }
 
-//   // optionally access and extend (rather than replace) parent metadata
-//   const previousImages = (await parent).openGraph?.images || [];
+  const fileContents = fs.readFileSync(filePath, 'utf8')
+  const matterResult = matter(fileContents)
 
-//   return {
-//     title: product.title,
-//     openGraph: {
-//       images: ['/some-specific-page-image.jpg', ...previousImages],
-//     },
-//   };
+  return {
+    title: matterResult.data.title,
+    openGraph: {
+      images: [imagePaths.facebook, ...previousImages],
+    },
+  }
+}
 
 export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), '../../packages/app/features/blog/articles/')
   const filenames = fs.readdirSync(postsDirectory)
 
-  const posts = filenames.map(async (filename, index) => {
-    return { params: { id: index } }
+  const posts = filenames.map((filename, index) => {
+    return { params: { id: filename } }
   })
-  console.log({ posts })
+
   return {
-    paths: [{ params: { id: 'design-tokens-why-you-need-them-today' } }],
-    fallback: false, // can also be true or 'blocking'
+    paths: posts,
+    fallback: false,
   }
 }
 
@@ -82,14 +85,11 @@ export const getStaticProps: GetStaticProps<{
 
   const posts = filenames.map((filename) => {
     const filePath = path.join(postsDirectory, `${filename}/article.md`)
-    const imagePath = path.join(postsDirectory, `${filename}/banner.png`)
 
     const fileContents = fs.readFileSync(filePath, 'utf8')
-    const imageContents = fs.readFileSync(imagePath, 'utf8')
 
     return {
       slug: filename,
-      banner: imageContents,
       articleMarkdown: fileContents,
     }
   })

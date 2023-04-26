@@ -39,7 +39,7 @@ const BlogEntry = ({
   const link = useLink({
     href: '/',
   })
-  console.log({ children })
+  // console.log({ children })
   const parsedPublishedDate = parseISO(publishedDate)
 
   const contentScroll = useRef(new Animated.Value(0)).current
@@ -82,7 +82,7 @@ const BlogEntry = ({
             >
               <Animated.Image
                 style={styles.banner(contentScroll)}
-                source={require('./banner.png')}
+                source={image}
                 resizeMode="cover"
               />
               <Stack
