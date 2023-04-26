@@ -44,19 +44,19 @@ export function BBCMaestroCaseStudy() {
               alignSelf="center"
             />
           </Stack>
-          <Stack pt="$5" space="$5" flex={1}>
-            <Text fontFamily="roboto" fontSize={22}>
+          <Stack pt="$5" flex={1}>
+            <Text variant="body">
               BBC Maestro provides on demand video based courses from the leading figures in their
               field. Historically, this has been confined to their web platform which meant their
               mobile and tablet users weren't able to access their content easily on the move,
               harness the full potential of their device, and were limited in capabilities.
             </Text>
-            <Text fontFamily="roboto" fontSize={22}>
+            <Text variant="body">
               As the lead React Native engineer on this green field project, I brought my experience
               building mobile applications to the company needing a mobile expert to expand their
               core business offering - placing their platform in their user's pockets.
             </Text>
-            <Text fontFamily="roboto" fontSize={22}>
+            <Text variant="body">
               I owned the technical development of the project, working closely with the CTO,
               product owner, designer and other stakeholders, I was able to bring a robust, scalable
               feature-complete application through testing and bug-fixing, ready for public launch,

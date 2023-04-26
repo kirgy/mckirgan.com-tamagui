@@ -161,8 +161,8 @@ export function HomeScreen() {
       onLayout={(event) => {
         console.log({ event: event.nativeEvent.layout.height })
         setContainerDimensions({
-          height: Dimensions.get('screen').height,
-          width: Dimensions.get('screen').width,
+          height: event.nativeEvent.layout.height,
+          width: event.nativeEvent.layout.width,
         })
       }}
       onHeaderLayout={(height, width) => {
@@ -173,7 +173,6 @@ export function HomeScreen() {
       }}
       headerProps={{
         px: '$5',
-        maxWidth: CONSTANTS.LAYOUT_MAX_WIDTH,
       }}
       maxWidth={windowWidth}
       overflow="hidden"
@@ -185,7 +184,7 @@ export function HomeScreen() {
       px={0}
     >
       <YStack space={0}>
-        <YStack space={0} minHeight={windowHeight - headerDimensions.height} overflow="hidden">
+        <YStack space={0} minHeight={windowHeight} overflow="hidden">
           <HomeProfile workExcerpts={WORK_EXCERPTS} />
         </YStack>
 

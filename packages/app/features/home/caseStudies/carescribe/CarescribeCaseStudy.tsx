@@ -43,25 +43,28 @@ const CarescribeCaseStudy = () => {
             alignSelf="center"
           />
         </Stack>
-        <Text color="$gray5Light" fontFamily="roboto" fontSize={22}>
-          CareScribe is fast becoming the UK's leading provider of accessibility software, and is
-          drastically leveling the playing field for students with accessibility needs. Caption.Ed,
-          now their flagship product, provides students the ability to live-transcribe zoom
-          meetings, in-person lectures and other media into an live-rolling and editable transcript.
-          Users can record a series of different notes to help then study and revisit key moments.
-        </Text>
-        <Text color="$gray5Light" fontFamily="roboto" fontSize={22}>
-          As the lead, and sole engineer for the majority of the project, I was brought onto the
-          team to own and lead development of the company's flagship product. Working with the CTO,
-          Tech Director, UX team, & designer, I planned and undertook a complete green-field
-          refactor of their existing product, creating a robust and scalable base for the future,
-          whilst creating a catelogue of competition crushing features.
-        </Text>
-        <Text color="$gray5Light" fontFamily="roboto" fontSize={22}>
-          As the project reached maturity, and the company acquired perminant engineer staff, I
-          worked with the new Lead Engineer to complete the product, add robust automated testing,
-          and release the product to market.
-        </Text>
+        <Stack flex={1}>
+          <Text color="$gray5Light" variant="body">
+            CareScribe is fast becoming the UK's leading provider of accessibility software, and is
+            drastically leveling the playing field for students with accessibility needs.
+            Caption.Ed, now their flagship product, provides students the ability to live-transcribe
+            zoom meetings, in-person lectures and other media into an live-rolling and editable
+            transcript. Users can record a series of different notes to help then study and revisit
+            key moments.
+          </Text>
+          <Text color="$gray5Light" variant="body">
+            As the lead, and sole engineer for the majority of the project, I was brought onto the
+            team to own and lead development of the company's flagship product. Working with the
+            CTO, Tech Director, UX team, & designer, I planned and undertook a complete green-field
+            refactor of their existing product, creating a robust and scalable base for the future,
+            whilst creating a catelogue of competition crushing features.
+          </Text>
+          <Text color="$gray5Light" variant="body">
+            As the project reached maturity, and the company acquired perminant engineer staff, I
+            worked with the new Lead Engineer to complete the product, add robust automated testing,
+            and release the product to market.
+          </Text>
+        </Stack>
         <Stack flexShrink={1} pb="$5" alignItems="flex-start">
           <Button flex={0} backgroundColor="#53a9ae" color="#ffffff" size="$5">
             Find out about Caption.Ed

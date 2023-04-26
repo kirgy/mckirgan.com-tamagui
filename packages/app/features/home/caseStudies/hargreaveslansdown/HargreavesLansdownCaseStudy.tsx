@@ -44,20 +44,20 @@ export function HargreavesLansdownCaseStudy() {
               alignSelf="center"
             />
           </Stack>
-          <Stack pt="$5" space="$5" flex={1}>
-            <Text fontFamily="roboto" fontSize={22}>
+          <Stack pt="$5" flex={1}>
+            <Text variant="body">
               Hargreaves Lansdown, a FTSE 100 company, is entrusted with £120 billion of UK wealth
               with 1.7 millions clients. They offer a large variety of financial products, from
               stock & shares to pensions and portfolios, there's a reason why they are the number
               one financial institute for private investors.
             </Text>
-            <Text fontFamily="roboto" fontSize={22}>
+            <Text variant="body">
               As a senior engineer, I joined HL's Active Savings department, working in complex
               capacity between 2 departments and code infrustructure, my role was to build the
               integration layer between these large & complex systems to enable delivery of HL's new
               Cash ISA product.
             </Text>
-            <Text fontFamily="roboto" fontSize={22}>
+            <Text variant="body">
               I owned the technical development of the integration layer, working with both Active
               Savings's wider team, and the general engineering teams. I had to innovate and
               proactively seek out various individuals through this large organisation to overcome

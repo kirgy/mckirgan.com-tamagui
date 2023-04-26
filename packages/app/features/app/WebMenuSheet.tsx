@@ -1,27 +1,17 @@
 import {
   Button,
-  H2,
   ListItem,
   Paragraph,
   Separator,
   Sheet,
-  Stack,
   useMedia,
   XGroup,
   XStack,
   YGroup,
   YStack,
 } from '@my/ui/src'
-import {
-  Book,
-  ChevronRight,
-  Github,
-  Home,
-  Linkedin,
-  Mail,
-  Star,
-  Twitter,
-} from '@tamagui/lucide-icons'
+import { Book, ChevronRight, Home, Mail } from '@tamagui/lucide-icons'
+import SiteFooter from 'app/features/app/SiteFooter/SiteFooter'
 import { useState } from 'react'
 import { useLink } from 'solito/link'
 
@@ -117,37 +107,7 @@ const WebMenuSheet = ({ menuOpen, setMenuOpen }: WebMenuSheet): JSX.Element => {
 
           <Separator />
 
-          <XGroup als="center" separator={<Separator />}>
-            <XGroup.Item>
-              <ListItem fontSize="$1" flex={1} hoverTheme pressTheme textAlign="left">
-                <Linkedin size={15} />
-              </ListItem>
-            </XGroup.Item>
-            <XGroup.Item>
-              <ListItem fontSize="$1" flex={1} hoverTheme pressTheme textAlign="left">
-                <Twitter size={15} />
-              </ListItem>
-            </XGroup.Item>
-            <XGroup.Item>
-              <ListItem
-                fontSize="$1"
-                flex={1}
-                hoverTheme
-                pressTheme
-                textAlign="left"
-                accessibilityLabel="github"
-              >
-                <Github size={15} />
-              </ListItem>
-            </XGroup.Item>
-          </XGroup>
-
-          <Separator />
-
-          <Paragraph color="$gray9" fontSize="$1" textAlign="center">
-            Designed, coded & copyright NybbleMouse Limited, copyright 2023. Company number:
-            09769539
-          </Paragraph>
+          <SiteFooter />
         </YStack>
       </Sheet.Frame>
     </Sheet>

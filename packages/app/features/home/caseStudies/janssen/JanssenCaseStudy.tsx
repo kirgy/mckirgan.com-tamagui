@@ -45,27 +45,27 @@ export function JanssenCaseStudy() {
               alignSelf="center"
             />
           </Stack>
-          <Stack pt="$5" space="$5" flex={1}>
-            <Text fontFamily="roboto" fontSize={22} color="$gray5Dark">
+          <Stack pt="$5" flex={1}>
+            <Text variant="body" color="$gray5Dark">
               Janssen, a Johnson & Johnson company, provide a variety of pharmaceutical services and
               research around the world. Part of their services incudes cancer research and tools to
               connect oncology doctors with Janssen's world leading experts. One such tool is a
               ExpertOnCall - an app which enables live video call consultations between cancer
               surgeons and Oncology experts.
             </Text>
-            <Text fontFamily="roboto" fontSize={22} color="$gray5Dark">
+            <Text variant="body" color="$gray5Dark">
               As the lead and sole React Native & Laravel full-stack engineer on this brown field
               project, I was brought on board to bring my full-stack & mobile skills to the agency;
               lifting an 3 year-old defunct React Native, Angular & Laravel full-stack project back
               to life, and create additional features.
             </Text>
-            <Text fontFamily="roboto" fontSize={22} color="$gray5Dark">
+            <Text variant="body" color="$gray5Dark">
               As the company had limited experience with React Native development, I worked in a
               project lead capacity, where I liased between the Project Manager, the wider
               development team and other stakeholders to advise on process, upgrade the app and
               server to the latest long-term-support versions, and build a handful of new features.
             </Text>
-            <Text fontFamily="roboto" fontSize={22} color="$gray5Dark">
+            <Text variant="body" color="$gray5Dark">
               I lead the project through to their client's testing phase before handing off the
               project to the agency's development team who will begin to acquire the skills needed
               to maintain the application. The app is routinely used daily by thausands of Oncology
