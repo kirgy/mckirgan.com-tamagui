@@ -17,7 +17,7 @@ import { SheetProps } from '@tamagui/sheet/types/types'
 import { ChevronDown, Menu } from '@tamagui/lucide-icons'
 import WebMenuSheet from 'app/features/app/WebMenuSheet'
 import { View, ViewProps } from 'react-native'
-import CONSTANTS from '../../../lib/constants'
+import CONSTANTS from '../../lib/constants'
 
 type WebContainerProps = YStackProps & {
   children: React.ReactNode

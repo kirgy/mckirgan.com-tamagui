@@ -1,7 +1,7 @@
 import { H1, H2, Image, YStack, Text, Stack, XStack, Button } from '@my/ui'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
-import CONSTANTS from '../../../../../lib/constants'
+import CONSTANTS from '../../../../lib/constants'
 
 const expertOnCallMockup = require('./expert-on-call-mockup.png')
 

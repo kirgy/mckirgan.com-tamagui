@@ -7,7 +7,7 @@ import { Animated, View } from 'react-native'
 import { createParam } from 'solito'
 import { TextLink } from 'solito/link'
 import { useLink } from 'solito/link'
-import CONSTANTS from '../../../lib/constants'
+import CONSTANTS from '../../lib/constants'
 import { parseISO, format } from 'date-fns'
 
 export type BlogEntryProps = {

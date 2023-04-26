@@ -1,7 +1,7 @@
 import { Stack, Image, Text, YStack, Button } from '@my/ui/src'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
-import CONSTANTS from '../../../../../lib/constants'
+import CONSTANTS from '../../../../lib/constants'
 
 const bbcMaestroStoreMockup = require('./carescribe-app-screenshot.png')
 

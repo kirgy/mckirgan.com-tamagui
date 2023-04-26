@@ -25,13 +25,16 @@ const getSocialMediaLinkByNetwork = (
   shareURL: string,
   shareText: string
 ) => {
+  const shareURLEncoded = encodeURIComponent(shareURL)
+  const shareTextEncoded = encodeURIComponent(shareText)
+
   switch (type) {
     case 'facebook':
-      return getFacebookLink(shareURL)
+      return getFacebookLink(shareURLEncoded)
     case 'twitter':
-      return getTwitterLink(shareURL, shareText)
+      return getTwitterLink(shareURLEncoded, shareTextEncoded)
     case 'linkedin':
-      return getLinkedInLink(shareURL, shareText)
+      return getLinkedInLink(shareURLEncoded, shareTextEncoded)
   }
 
   const _exhaustiveCheck: never = type

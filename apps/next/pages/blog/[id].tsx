@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next'
 import BlogEntry from 'app/features/blog/BlogEntry'
 import ReactMarkdown from 'react-markdown'
 import { blogComponents } from '@my/ui/src'
+import CONSTANTS from 'app/lib/constants'
 
 export const generateStaticParams = async () => {
   const posts = await getPostMetaData()
@@ -19,7 +20,7 @@ const BlogArticle = (props: any) => {
 
   return (
     <BlogEntry
-      url={`/blog/${props.slug}`}
+      url={`${CONSTANTS.DOMAIN_URL}/blog/${props.slug}`}
       title={matterResult.data.title}
       image={props.banner}
       publishedDate={matterResult.data.publishedDate}
@@ -32,6 +33,31 @@ const BlogArticle = (props: any) => {
     </BlogEntry>
   )
 }
+
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+// export async function generateMetadata(
+//   { params, searchParams }: Props,
+//   parent?: ResolvingMetadata,
+// ): Promise<Metadata> {
+//   // read route params
+//   const id = params.id;
+
+//   // fetch data
+//   const product = await fetch(`https://.../${id}`).then((res) => res.json());
+
+//   // optionally access and extend (rather than replace) parent metadata
+//   const previousImages = (await parent).openGraph?.images || [];
+
+//   return {
+//     title: product.title,
+//     openGraph: {
+//       images: ['/some-specific-page-image.jpg', ...previousImages],
+//     },
+//   };
 
 export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), '../../packages/app/features/blog/articles/')
