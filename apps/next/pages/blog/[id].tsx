@@ -4,6 +4,7 @@ import path from 'path'
 import fs from 'fs'
 import { GetStaticProps, Metadata, ResolvingMetadata } from 'next'
 import BlogEntry from 'app/features/blog/BlogEntry'
+import SocialMeta, { OGType } from 'app/features/app/SocialMeta'
 import ReactMarkdown from 'react-markdown'
 import { blogComponents } from '@my/ui/src'
 import CONSTANTS from 'app/lib/constants'
@@ -17,10 +18,11 @@ export const generateStaticParams = async () => {
 
 const BlogArticle = (props: any) => {
   const matterResult = matter(props.articleMarkdown)
-
+  const postURL = `${CONSTANTS.DOMAIN_URL}/blog/${props.slug}`
+  const parsedDate = new Date(matterResult.data.publishedDate)
   return (
     <BlogEntry
-      url={`${CONSTANTS.DOMAIN_URL}/blog/${props.slug}`}
+      url={postURL}
       title={matterResult.data.title}
       image={matterResult.data.imageBanner}
       publishedDate={matterResult.data.publishedDate}
@@ -29,6 +31,17 @@ const BlogArticle = (props: any) => {
         text: matterResult.data.socialText,
       }}
     >
+      <SocialMeta
+        type={OGType.article}
+        title={matterResult.data.title}
+        description={matterResult.data.metaDescription}
+        url={postURL}
+        publishedDate={parsedDate}
+        image={{
+          facebook: `${CONSTANTS.DOMAIN_URL}${matterResult.data.metaImageFacebook}`,
+          twitter: `${CONSTANTS.DOMAIN_URL}${matterResult.data.metaImageTwitter}`,
+        }}
+      />
       <ReactMarkdown components={blogComponents}>{matterResult.content}</ReactMarkdown>
     </BlogEntry>
   )
@@ -39,27 +52,31 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
-  const previousImages = (await parent)?.openGraph?.images || []
+// export async function generateMetadata(
+//   { params, searchParams }: Props,
+//   parent?: ResolvingMetadata
+// ): Promise<Metadata> {
+//   const previousImages = (await parent)?.openGraph?.images || []
 
-  const postsDirectory = path.join(process.cwd(), '../../packages/app/features/blog/articles/')
-  const filePath = path.join(postsDirectory, `${params.id}/article.md`)
-  const imagePaths = {
-    facebook: `/blog/social/${params.id}/facebook.png`,
-  }
+//   const postsDirectory = path.join(process.cwd(), '../../packages/app/features/blog/articles/')
+//   const filePath = path.join(postsDirectory, `${params.id}/article.md`)
+//   const imagePaths = {
+//     facebook: `/blog/social/${params.id}/facebook.png`,
+//   }
 
-  const fileContents = fs.readFileSync(filePath, 'utf8')
-  const matterResult = matter(fileContents)
+//   const fileContents = fs.readFileSync(filePath, 'utf8')
+//   const matterResult = matter(fileContents)
 
-  return {
-    title: matterResult.data.title,
-    openGraph: {
-      images: [imagePaths.facebook, ...previousImages],
-    },
-  }
+//   return {
+//     title: matterResult.data.title,
+//     openGraph: {
+//       images: [imagePaths.facebook, ...previousImages],
+//     },
+//   }
+// }
+
+export async function generateMetadata() {
+  return { title: 'client-metadata' }
 }
 
 export async function getStaticPaths() {
