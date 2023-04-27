@@ -40,7 +40,6 @@
     "raw-loader": "^4.0.2",
     "react-markdown": "^8.0.7",
     "react-native-gesture-handler": "~2.8.0",
-    "react-native-markdown-display": "^7.0.0-alpha.2",
     "react-native-reanimated": "~2.12.0",
     "react-typed": "^1.2.0",
     "turbo": "^1.4.2",
