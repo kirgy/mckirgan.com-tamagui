@@ -30,7 +30,7 @@
     "@babel/runtime": "^7.18.9",
     "@manypkg/cli": "^0.19.1",
     "@next/font": "^13.2.3",
-    "@tamagui/font-fira-mono": "^1.7.0",
+    "@tamagui/font-fira-mono": "^1.17.0",
     "date-fns": "^2.29.3",
     "eslint": "^8.21.0",
     "expo-file-system": "~15.1.1",
