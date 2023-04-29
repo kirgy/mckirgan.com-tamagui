@@ -118,7 +118,7 @@ const BlogEntry = ({
               <YStack space="$6" mt="$3" justifyContent="center">
                 <Share shareURL={url} shareText={social.text} />
                 <YStack>
-                  <Text lineHeight={8} marginTop="$4">
+                  <Text lineHeight={8} marginTop="$4" fontSize="$6">
                     {format(parsedPublishedDate, 'do LLLL yyyy')}
                   </Text>
                   <Text variant="bodySM" marginTop="$2" opacity={0.5}>
