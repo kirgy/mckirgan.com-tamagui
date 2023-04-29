@@ -16,9 +16,10 @@ const logoHL = require('app/features/home/assets/logos/hargreaveslansdown.jpg')
 
 type HomeProfileProps = {
   workExcerpts: WorkExcerpts
+  scrollToFirstCaseStudy: () => void
 }
 
-export default function HomeProfile({ workExcerpts }: HomeProfileProps) {
+export default function HomeProfile({ workExcerpts, scrollToFirstCaseStudy }: HomeProfileProps) {
   const [showExcerptImage, setShowExcerptImage] = useState(false)
   const [activeWorkExcerptIndex, setActiveWorkExcerptIndex] = useState(0)
   const [containerDimensions, setContainerDimensions] = useState<{
@@ -137,6 +138,15 @@ export default function HomeProfile({ workExcerpts }: HomeProfileProps) {
                 backgroundColor="$gray5Dark"
                 color="black"
                 mb="$5"
+                animation="bouncy"
+                hoverStyle={{
+                  scale: 1.2,
+                  cursor: 'pointer',
+                }}
+                pressStyle={{
+                  scale: 0.9,
+                }}
+                onPress={scrollToFirstCaseStudy}
               />
             </Stack>
           </YStack>

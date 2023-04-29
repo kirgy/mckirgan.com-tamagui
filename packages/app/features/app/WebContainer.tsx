@@ -1,29 +1,29 @@
 import {
   Button,
   H1,
-  H2,
   Header,
-  Paragraph,
   ScrollView,
-  Sheet,
   Stack,
   useWindowDimensions,
   XStack,
   YStack,
   type YStackProps,
 } from '@my/ui/src'
-import { useEffect, useState } from 'react'
-import { SheetProps } from '@tamagui/sheet/types/types'
-import { ChevronDown, Menu } from '@tamagui/lucide-icons'
+import { type MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
+import { Menu } from '@tamagui/lucide-icons'
 import WebMenuSheet from 'app/features/app/WebMenuSheet'
-import { View, ViewProps } from 'react-native'
 import CONSTANTS from '../../lib/constants'
+import { type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native'
+import { Link } from 'solito/link'
 
 type WebContainerProps = YStackProps & {
   children: React.ReactNode
   innerContainer?: YStackProps
   headerProps?: YStackProps
   onHeaderLayout?: (height: number, width: number) => void
+  transparentUntilScroll?: boolean
+  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void
+  scrollViewRef?: MutableRefObject<ScrollView>
 }
 
 const WebContainer = ({
@@ -31,6 +31,9 @@ const WebContainer = ({
   innerContainer,
   headerProps,
   onHeaderLayout,
+  transparentUntilScroll,
+  onScroll,
+  scrollViewRef,
   ...containerProps
 }: WebContainerProps): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -38,13 +41,29 @@ const WebContainer = ({
   const [headerDimensions, setHeaderDimensions] = useState<{ x: number; y: number } | undefined>(
     undefined
   )
+  const [canAnimateHeader, setCanAnimateHeader] = useState(false)
 
   const windowDimensions = useWindowDimensions()
 
-  console.log({ screenDimensions: headerDimensions })
   useEffect(() => {
     setPageLoaded(true)
   }, [])
+
+  const onScrollHandler = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      onScroll && onScroll(event)
+
+      if (event.nativeEvent.contentOffset.y > 50) {
+        setCanAnimateHeader(true)
+        return
+      }
+
+      if (event.nativeEvent.contentOffset.y < 20) {
+        setCanAnimateHeader(false)
+      }
+    },
+    [onScroll]
+  )
 
   return (
     <YStack alignItems="center">
@@ -53,7 +72,6 @@ const WebContainer = ({
         width="100%"
         marginBottom={0 - (headerDimensions?.y ?? 0)}
         zIndex={1}
-        backgroundColor="#000000cc"
         onLayout={(event) => {
           if (pageLoaded) {
             if (onHeaderLayout) {
@@ -66,18 +84,49 @@ const WebContainer = ({
           }
         }}
         flex={1}
+        position="relative"
         {...headerProps}
       >
-        <Stack width="100%" alignItems="center">
+        <Stack
+          flex={1}
+          backgroundColor="#000000"
+          position="absolute"
+          top={0}
+          left={0}
+          height="100%"
+          width="100%"
+          opacity={
+            transparentUntilScroll ? (canAnimateHeader && transparentUntilScroll ? 0.85 : 0) : 0.85
+          }
+          animation={[
+            'bouncy',
+            {
+              backgroundColor: {
+                delay: 1000,
+              },
+            },
+          ]}
+        />
+        <Stack width="100%" alignItems="center" position="relative" top={0}>
           <XStack justifyContent="space-between" width="100%" maxWidth={CONSTANTS.LAYOUT_MAX_WIDTH}>
-            <H1
-              $sm={{
-                fontSize: '$9',
-                mt: '$-2',
+            <Stack
+              animation="bouncy"
+              hoverStyle={{}}
+              pressStyle={{
+                scale: 0.98,
               }}
             >
-              McKirgan.com
-            </H1>
+              <Link href="/">
+                <H1
+                  $sm={{
+                    fontSize: '$9',
+                    mt: '$-2',
+                  }}
+                >
+                  McKirgan.com
+                </H1>
+              </Link>
+            </Stack>
             <Button
               onPress={() => setMenuOpen(!menuOpen)}
               backgroundColor="none"
@@ -92,7 +141,15 @@ const WebContainer = ({
           </XStack>
         </Stack>
       </Header>
-      <ScrollView flex={1} w="100%" maxHeight={windowDimensions.height}>
+
+      <ScrollView
+        ref={scrollViewRef}
+        flex={1}
+        w="100%"
+        maxHeight={windowDimensions.height}
+        onScroll={onScrollHandler}
+        scrollEventThrottle={100}
+      >
         <YStack
           px="$5"
           flex={1}

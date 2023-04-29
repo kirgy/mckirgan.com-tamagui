@@ -1,36 +1,7 @@
-import {
-  Anchor,
-  Button,
-  H1,
-  Paragraph,
-  Separator,
-  Sheet,
-  XStack,
-  YStack,
-  Image,
-  type TamaguiElement,
-  H2,
-  Stack,
-  useMedia,
-  Text,
-  AnimatePresence,
-  styled,
-  Square,
-  Circle,
-  ButtonFrame,
-  Spinner,
-  H3,
-  H4,
-} from '@my/ui'
-import { ArrowDown, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
+import { YStack, Stack, styled, Square } from '@my/ui'
 import WebContainer from 'app/features/app/WebContainer'
-// import { LinearGradient } from 'expo-linear-gradient'
-import { LinearGradient } from '@tamagui/linear-gradient'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Dimensions, LayoutChangeEvent, useWindowDimensions, View } from 'react-native'
-import { useLink } from 'solito/link'
-import Typed from 'react-typed'
-import CONSTANTS from '../../lib/constants'
+import { useWindowDimensions, ScrollView as RNScrollView } from 'react-native'
 import HomeProfile from 'app/features/home/HomeProfile'
 import { BBCMaestroCaseStudy } from 'app/features/home/caseStudies/bbcMaestro/BBCMaestroCaseStudy'
 import CarescribeCaseStudy from 'app/features/home/caseStudies/carescribe/CarescribeCaseStudy'
@@ -102,6 +73,7 @@ export function HomeScreen() {
   const [showExcerptImage, setShowExcerptImage] = useState(false)
   const [workExcerptsAllShown, setWorkExcerptsAllShown] = useState(false)
   const [pageLoaded, setPageLoaded] = useState(false)
+  const scrollViewRef = useRef<RNScrollView>(null)
 
   const [{ windowHeight, windowWidth }, setWindowDimensions] = useState({
     windowHeight: 0,
@@ -151,15 +123,16 @@ export function HomeScreen() {
     }
   }, [showExcerptImage])
 
-  const linkProps = useLink({
-    href: '/user/nate',
-  })
+  const handleScrollToFirstCaseStudy = useCallback(() => {
+    scrollViewRef.current?.scrollTo({
+      y: windowHeight - headerDimensions.height,
+      animated: true,
+    })
+  }, [scrollViewRef, windowHeight])
 
-  console.log({ c: containerDimensions.height, d: headerDimensions.height })
   return (
     <WebContainer
       onLayout={(event) => {
-        console.log({ event: event.nativeEvent.layout.height })
         setContainerDimensions({
           height: event.nativeEvent.layout.height,
           width: event.nativeEvent.layout.width,
@@ -171,9 +144,11 @@ export function HomeScreen() {
           width,
         })
       }}
+      scrollViewRef={scrollViewRef}
       headerProps={{
         px: '$5',
       }}
+      transparentUntilScroll={true}
       maxWidth={windowWidth}
       overflow="hidden"
       innerContainer={{
@@ -185,7 +160,10 @@ export function HomeScreen() {
     >
       <YStack space={0}>
         <YStack space={0} minHeight={windowHeight} overflow="hidden">
-          <HomeProfile workExcerpts={WORK_EXCERPTS} />
+          <HomeProfile
+            workExcerpts={WORK_EXCERPTS}
+            scrollToFirstCaseStudy={handleScrollToFirstCaseStudy}
+          />
         </YStack>
 
         <Stack minHeight={windowHeight} flex={1}>
