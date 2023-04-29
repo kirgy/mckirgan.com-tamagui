@@ -62,7 +62,6 @@ const BlogEntry = ({
       <View
         style={{
           maxHeight: dimensions.height,
-          // paddingTop: headerDimensions?.height,
         }}
       >
         <Animated.ScrollView
@@ -101,7 +100,7 @@ const BlogEntry = ({
           </Stack>
           <YStack flex={1} alignItems="center">
             <XStack
-              mb="$5"
+              mb="$0"
               width="100%"
               maxWidth={CONSTANTS.LAYOUT_MAX_WIDTH}
               mt={-75}
@@ -119,8 +118,10 @@ const BlogEntry = ({
               <YStack space="$6" mt="$3" justifyContent="center">
                 <Share shareURL={url} shareText={social.text} />
                 <YStack>
-                  <Text lineHeight={8}>{format(parsedPublishedDate, 'do LLLL yyyy')}</Text>
-                  <Text variant="bodySM" opacity={0.5}>
+                  <Text lineHeight={8} marginTop="$4">
+                    {format(parsedPublishedDate, 'do LLLL yyyy')}
+                  </Text>
+                  <Text variant="bodySM" marginTop="$2" opacity={0.5}>
                     {articleReadTimeMinutes} minute read
                   </Text>
                 </YStack>

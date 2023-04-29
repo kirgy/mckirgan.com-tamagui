@@ -6,7 +6,7 @@ import { GetStaticProps, Metadata, ResolvingMetadata } from 'next'
 import BlogEntry from 'app/features/blog/BlogEntry'
 import SocialMeta, { OGType } from 'app/features/app/SocialMeta'
 import ReactMarkdown from 'react-markdown'
-import { blogComponents } from '@my/ui/src'
+import { blogComponents, Square, Image, Stack } from '@my/ui/src'
 import CONSTANTS from 'app/lib/constants'
 
 export const generateStaticParams = async () => {
