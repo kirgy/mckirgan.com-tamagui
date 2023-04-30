@@ -3,10 +3,6 @@ const { withTamagui } = require('@tamagui/next-plugin')
 const withImages = require('next-images')
 const { join } = require('path')
 
-process.env.IGNORE_TS_CONFIG_PATHS = 'true'
-process.env.TAMAGUI_TARGET = 'web'
-process.env.TAMAGUI_DISABLE_WARN_DYNAMIC_LOAD = '1'
-
 const boolVals = {
   true: true,
   false: false,
@@ -82,6 +78,15 @@ module.exports = function () {
       'expo-modules-core',
     ],
     experimental: {
+      /*
+       A few notes before enabling app directory:
+
+       - App dir is not yet stable - Usage of this for production apps is discouraged.
+       - Tamagui doesn't support usage in React Server Components yet (usage with 'use client' is supported).
+       - Solito doesn't support app dir at the moment - You'll have to remove Solito.
+       - The `/app` in this starter has the same routes as the `/pages` directory. You should probably remove `/pages` after enabling this.
+      */
+      appDir: false,
       // optimizeCss: true,
       scrollRestoration: true,
       legacyBrowsers: false,
@@ -92,7 +97,6 @@ module.exports = function () {
         // by next.js will be dropped. Doesn't make much sense, but how it is
         fs: false, // the solution
       }
-
       return config
     },
   }
