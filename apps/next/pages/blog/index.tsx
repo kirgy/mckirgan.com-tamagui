@@ -38,20 +38,16 @@ const BlogIndex = ({ articles }: BlogIndexProps) => {
     { height: number; width: number } | undefined
   >()
 
-  let mappedArticles = articles.map((article) => {
-    return {
-      ...article,
-      articleMarkdown: typedMatter<ArticleMarkdownData>(article.articleMarkdown),
-    }
-  })
-
-  mappedArticles.push(
-    mappedArticles[0],
-    mappedArticles[0],
-    mappedArticles[0],
-    mappedArticles[0],
-    mappedArticles[0]
-  )
+  let mappedArticles = articles
+    .map((article) => {
+      return {
+        ...article,
+        articleMarkdown: typedMatter<ArticleMarkdownData>(article.articleMarkdown),
+      }
+    })
+    .sort((a, b) => {
+      return a.articleMarkdown.data.publishedDate < b.articleMarkdown.data.publishedDate ? 1 : -1
+    })
 
   const leadingArticle = mappedArticles[0]
 
@@ -70,7 +66,7 @@ const BlogIndex = ({ articles }: BlogIndexProps) => {
     >
       <ScrollView>
         <YStack marginTop={headerDimensions?.height ?? 0}>
-          <Stack px="$5">
+          <Stack width={CONSTANTS.LAYOUT_MAX_WIDTH} maxWidth="100%" alignSelf="center">
             <Text variant="heading2">All blog posts</Text>
           </Stack>
           <Stack flex={1} alignItems="center">
