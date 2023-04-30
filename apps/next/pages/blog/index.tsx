@@ -87,6 +87,7 @@ const BlogIndex = ({ articles }: BlogIndexProps) => {
                 {mappedArticles.map((article) => {
                   return (
                     <Stack
+                      key={article.slug}
                       flexGrow={0}
                       flexBasis="100%"
                       p="$5"
