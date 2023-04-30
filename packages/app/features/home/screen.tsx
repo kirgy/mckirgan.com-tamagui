@@ -1,20 +1,20 @@
 import { YStack, Stack, styled, Square } from '@my/ui'
 import WebContainer from 'app/features/app/WebContainer'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useWindowDimensions, ScrollView as RNScrollView } from 'react-native'
+import {
+  useWindowDimensions,
+  ScrollView as RNScrollView,
+  type LayoutChangeEvent,
+} from 'react-native'
 import HomeProfile from 'app/features/home/HomeProfile'
 import { BBCMaestroCaseStudy } from 'app/features/home/caseStudies/bbcMaestro/BBCMaestroCaseStudy'
 import CarescribeCaseStudy from 'app/features/home/caseStudies/carescribe/CarescribeCaseStudy'
 import { JanssenCaseStudy } from 'app/features/home/caseStudies/janssen/JanssenCaseStudy'
 import { HargreavesLansdownCaseStudy } from 'app/features/home/caseStudies/hargreaveslansdown/HargreavesLansdownCaseStudy'
 
-const chrisProfileImage = require('app/features/home/assets/chris-profile-home-mobile.jpg')
-const chrisProfileLargeImage = require('app/features/home/assets/chris-profile-home-large.jpg')
-const chrisProfileDesktopImage = require('app/features/home/assets/chris-profile-desktop.jpg')
-
 const logoBBCMaestro = require('app/features/home/assets/logos/bbcmaestro.png')
 const logoJanssen = require('app/features/home/assets/logos/janssenoncology.jpg')
-const logoMarmite = require('app/features/home/assets/logos/marmite.jpg')
+const logoCarescribe = require('app/features/home/assets/logos/carescribe.jpeg')
 const logoHL = require('app/features/home/assets/logos/hargreaveslansdown.jpg')
 
 export type WorkExcerpts = Array<{
@@ -32,9 +32,9 @@ const WORK_EXCERPTS: WorkExcerpts = [
     imageRatio: 1,
   },
   {
-    company: 'MARMITE',
-    text: 'I let you put your name on it.',
-    image: logoMarmite,
+    company: 'CARESCIBE',
+    text: 'I leveled the playing field for disadvantaged students.',
+    image: logoCarescribe,
     imageRatio: 1,
   },
   {
@@ -51,27 +51,11 @@ const WORK_EXCERPTS: WorkExcerpts = [
   },
 ]
 
-const AnimatableSquare = styled(Square, {
-  variants: {
-    fromRight: {
-      true: {
-        x: 1000,
-      },
-    },
-    fromLeft: {
-      true: {
-        x: -1000,
-      },
-    },
-  },
-})
-
 export function HomeScreen() {
   const [containerDimensions, setContainerDimensions] = useState({ height: 0, width: 0 })
   const [headerDimensions, setHeaderDimensions] = useState({ height: 0, width: 0 })
   const [activeWorkExcerptIndex, setActiveWorkExcerptIndex] = useState(0)
   const [showExcerptImage, setShowExcerptImage] = useState(false)
-  const [workExcerptsAllShown, setWorkExcerptsAllShown] = useState(false)
   const [pageLoaded, setPageLoaded] = useState(false)
   const scrollViewRef = useRef<RNScrollView>(null)
 
@@ -79,6 +63,11 @@ export function HomeScreen() {
     windowHeight: 0,
     windowWidth: 0,
   })
+
+  /**
+   * array of scroll-to positions of case studies, indexed by index
+   */
+  const [caseStudyPositions, setCaseStudyPositions] = useState<Record<number, number>>({})
 
   // this is initially set server-side which will result in 0 values on first render
   const unsafeDimensions = useWindowDimensions()
@@ -123,12 +112,28 @@ export function HomeScreen() {
     }
   }, [showExcerptImage])
 
-  const handleScrollToFirstCaseStudy = useCallback(() => {
-    scrollViewRef.current?.scrollTo({
-      y: windowHeight - headerDimensions.height,
-      animated: true,
-    })
-  }, [scrollViewRef, windowHeight])
+  const handleScrollToCaseStudy = useCallback(
+    (index: number) => {
+      console.log({ caseStudyPositions: caseStudyPositions[index] })
+      scrollViewRef.current?.scrollTo({
+        y: (caseStudyPositions[index] ?? 0) - headerDimensions.height,
+        animated: true,
+      })
+    },
+    [scrollViewRef, windowHeight, caseStudyPositions, headerDimensions]
+  )
+
+  const setCaseStudyLayout = useCallback(
+    (event: LayoutChangeEvent, index: number) => {
+      const layout = event.nativeEvent.layout
+      caseStudyPositions[index] = layout.y
+
+      setCaseStudyPositions({
+        ...caseStudyPositions,
+      })
+    },
+    [caseStudyPositions]
+  )
 
   return (
     <WebContainer
@@ -162,20 +167,20 @@ export function HomeScreen() {
         <YStack space={0} minHeight={windowHeight} overflow="hidden">
           <HomeProfile
             workExcerpts={WORK_EXCERPTS}
-            scrollToFirstCaseStudy={handleScrollToFirstCaseStudy}
+            handleScrollToCaseStudy={handleScrollToCaseStudy}
           />
         </YStack>
 
-        <Stack minHeight={windowHeight} flex={1}>
+        <Stack minHeight={windowHeight} flex={1} onLayout={(event) => setCaseStudyLayout(event, 0)}>
           <BBCMaestroCaseStudy />
         </Stack>
-        <Stack minHeight={windowHeight}>
+        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 1)}>
           <CarescribeCaseStudy />
         </Stack>
-        <Stack minHeight={windowHeight}>
+        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 2)}>
           <JanssenCaseStudy />
         </Stack>
-        <Stack minHeight={windowHeight}>
+        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 3)}>
           <HargreavesLansdownCaseStudy />
         </Stack>
       </YStack>

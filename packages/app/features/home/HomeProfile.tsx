@@ -1,7 +1,7 @@
 import { Button, YStack, Image, H2, Stack, Square } from '@my/ui'
 import { ArrowDown } from '@tamagui/lucide-icons'
 import { LinearGradient } from '@tamagui/linear-gradient'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Typed from 'react-typed'
 import { type WorkExcerpts } from 'app/features/home/screen'
 
@@ -16,10 +16,10 @@ const logoHL = require('app/features/home/assets/logos/hargreaveslansdown.jpg')
 
 type HomeProfileProps = {
   workExcerpts: WorkExcerpts
-  scrollToFirstCaseStudy: () => void
+  handleScrollToCaseStudy: (index: number) => void
 }
 
-export default function HomeProfile({ workExcerpts, scrollToFirstCaseStudy }: HomeProfileProps) {
+export default function HomeProfile({ workExcerpts, handleScrollToCaseStudy }: HomeProfileProps) {
   const [showExcerptImage, setShowExcerptImage] = useState(false)
   const [activeWorkExcerptIndex, setActiveWorkExcerptIndex] = useState(0)
   const [containerDimensions, setContainerDimensions] = useState<{
@@ -35,7 +35,6 @@ export default function HomeProfile({ workExcerpts, scrollToFirstCaseStudy }: Ho
     (activeIndex: number) => {
       setShowExcerptImage(true)
       setActiveWorkExcerptIndex(activeIndex)
-      console.log({ activeIndex, self })
     },
     [setActiveWorkExcerptIndex, setShowExcerptImage]
   )
@@ -112,6 +111,14 @@ export default function HomeProfile({ workExcerpts, scrollToFirstCaseStudy }: Ho
                 animation="lazy"
                 size={110}
                 opacity={1}
+                hoverStyle={{
+                  scale: 1.1,
+                  cursor: 'pointer',
+                }}
+                pressStyle={{
+                  scale: 0.9,
+                }}
+                onPress={() => handleScrollToCaseStudy(activeWorkExcerptIndex)}
               >
                 <Image
                   src={
@@ -146,7 +153,7 @@ export default function HomeProfile({ workExcerpts, scrollToFirstCaseStudy }: Ho
                 pressStyle={{
                   scale: 0.9,
                 }}
-                onPress={scrollToFirstCaseStudy}
+                onPress={() => handleScrollToCaseStudy(0)}
               />
             </Stack>
           </YStack>

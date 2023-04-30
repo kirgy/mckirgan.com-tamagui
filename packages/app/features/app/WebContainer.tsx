@@ -99,7 +99,7 @@ const WebContainer = ({
             transparentUntilScroll ? (canAnimateHeader && transparentUntilScroll ? 0.85 : 0) : 0.85
           }
           animation={[
-            'bouncy',
+            'linear',
             {
               backgroundColor: {
                 delay: 1000,
