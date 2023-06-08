@@ -24,14 +24,14 @@ const getArticles = () => {
   })
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const articles = getArticles()
   return {
     props: { articles }, // will be passed to the page component as props
   }
 }
 
-type BlogIndexProps = Awaited<ReturnType<typeof getServerSideProps>>['props']
+type BlogIndexProps = Awaited<ReturnType<typeof getStaticProps>>['props']
 
 const BlogIndex = ({ articles }: BlogIndexProps) => {
   const [headerDimensions, setHeaderDimensions] = useState<
