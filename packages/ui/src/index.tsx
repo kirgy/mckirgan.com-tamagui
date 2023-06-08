@@ -1,5 +1,7 @@
 export * from 'tamagui'
 export * from '@tamagui/toast'
 export * from './MyComponent'
+export { default as Text } from './Text'
+export { default as blogComponents } from './blogComponents'
 export { config } from './tamagui.config'
 export * from './CustomToast'
