@@ -1,4 +1,4 @@
-import { Text } from '@my/ui'
+import Text from './Text'
 
 const blogComponents = {
   p: ({ children, ...props }) => {
