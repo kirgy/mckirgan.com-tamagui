@@ -1645,6 +1645,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.21.0":
+  version: 7.22.3
+  resolution: "@babel/runtime@npm:7.22.3"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 8fc50785ca4cba749fed90bffca7e6fd52d4709755654e95b8d2a945fc034b56fb8c2e8a0183fea7c4abb86bf5fa77678c0ea35163b6920649833d180c34c234
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.21.5":
   version: 7.21.5
   resolution: "@babel/runtime@npm:7.21.5"
@@ -4233,6 +4242,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tamagui/font-fira-mono@npm:^1.31.2":
+  version: 1.31.2
+  resolution: "@tamagui/font-fira-mono@npm:1.31.2"
+  dependencies:
+    "@tamagui/core": 1.31.2
+  checksum: 23856553f7442bd5e7e8c3544d4dc3427ffe27691fd2284bc7853ddbd3e5930852ad8028816104e9b9439b960791c1832e2a4e85ee37f57e1cb5fe47f587a4d8
+  languageName: node
+  linkType: hard
+
 "@tamagui/font-inter@npm:latest":
   version: 1.31.2
   resolution: "@tamagui/font-inter@npm:1.31.2"
@@ -5347,7 +5365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*":
+"@types/prop-types@npm:*, @types/prop-types@npm:^15.0.0":
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
   checksum: 5b43b8b15415e1f298243165f1d44390403bb2bd42e662bca3b5b5633fdd39c938e91b7fce3a9483699db0f7a715d08cef220c121f723a634972fdf596aec980
@@ -7873,6 +7891,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^2.30.0":
+  version: 2.30.0
+  resolution: "date-fns@npm:2.30.0"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+  checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
+  languageName: node
+  linkType: hard
+
 "dayjs@npm:^1.8.15":
   version: 1.11.7
   resolution: "dayjs@npm:1.11.7"
@@ -9730,6 +9757,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-file-system@npm:^15.2.2":
+  version: 15.3.0
+  resolution: "expo-file-system@npm:15.3.0"
+  dependencies:
+    uuid: ^3.4.0
+  peerDependencies:
+    expo: "*"
+  checksum: a485e1c9978f2c301213a7f6b9c1654f7cf25004a46a658fe3046a33c855cb5114523c57ca12820efd699740563dc21457f982515385e737b8fb2bf08af700c1
+  languageName: node
+  linkType: hard
+
 "expo-file-system@npm:~15.2.0, expo-file-system@npm:~15.2.2":
   version: 15.2.2
   resolution: "expo-file-system@npm:15.2.2"
@@ -11038,6 +11076,18 @@ __metadata:
   version: 15.8.0
   resolution: "graphql@npm:15.8.0"
   checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
+  languageName: node
+  linkType: hard
+
+"gray-matter@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "gray-matter@npm:4.0.3"
+  dependencies:
+    js-yaml: ^3.13.1
+    kind-of: ^6.0.2
+    section-matter: ^1.0.0
+    strip-bom-string: ^1.0.0
+  checksum: 37717bd424344487d655392251ce8d8878a1275ee087003e61208fba3bfd59cbb73a85b2159abf742ae95e23db04964813fdc33ae18b074208428b2528205222
   languageName: node
   linkType: hard
 
@@ -13166,6 +13216,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mdast-util-to-hast@npm:^12.1.0":
+  version: 12.3.0
+  resolution: "mdast-util-to-hast@npm:12.3.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/mdast": ^3.0.0
+    mdast-util-definitions: ^5.0.0
+    micromark-util-sanitize-uri: ^1.1.0
+    trim-lines: ^3.0.0
+    unist-util-generated: ^2.0.0
+    unist-util-position: ^4.0.0
+    unist-util-visit: ^4.0.0
+  checksum: ea40c9f07dd0b731754434e81c913590c611b1fd753fa02550a1492aadfc30fb3adecaf62345ebb03cea2ddd250c15ab6e578fffde69c19955c9b87b10f2a9bb
+  languageName: node
+  linkType: hard
+
 "mdast-util-to-markdown@npm:^1.0.0, mdast-util-to-markdown@npm:^1.3.0":
   version: 1.5.0
   resolution: "mdast-util-to-markdown@npm:1.5.0"
@@ -13901,6 +13967,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"micromark-util-sanitize-uri@npm:^1.1.0":
+  version: 1.2.0
+  resolution: "micromark-util-sanitize-uri@npm:1.2.0"
+  dependencies:
+    micromark-util-character: ^1.0.0
+    micromark-util-encode: ^1.0.0
+    micromark-util-symbol: ^1.0.0
+  checksum: 6663f365c4fe3961d622a580f4a61e34867450697f6806f027f21cf63c92989494895fcebe2345d52e249fe58a35be56e223a9776d084c9287818b40c779acc1
+  languageName: node
+  linkType: hard
+
 "micromark-util-subtokenize@npm:^1.0.0":
   version: 1.0.2
   resolution: "micromark-util-subtokenize@npm:1.0.2"
@@ -14344,6 +14421,7 @@ __metadata:
     app: "workspace:*"
     eslint-config-next: ^13.0.4
     next: ^13.2.4
+    next-images: ^1.8.5
     raf: ^3.4.1
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -14360,14 +14438,33 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.9
     "@manypkg/cli": ^0.19.1
+    "@tamagui/font-fira-mono": ^1.31.2
     check-dependency-version-consistency: ^3.0.3
+    date-fns: ^2.30.0
     eslint: ^8.21.0
+    expo-file-system: ^15.2.2
+    expo-linear-gradient: ^12.1.2
+    gray-matter: ^4.0.3
     node-gyp: ^9.3.1
     prettier: ^2.7.1
+    react-markdown: ^8.0.7
+    react-typed: ^1.2.0
     turbo: ^1.8.3
     typescript: ^5.1.3
   languageName: unknown
   linkType: soft
+
+"next-images@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "next-images@npm:1.8.5"
+  dependencies:
+    file-loader: ^6.2.0
+    url-loader: ^4.1.0
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 7b4666ad8b3385a5894aa9407c97a6e0b05527d61d8702dd375bbe87e2ccbf55ccd28f8c2cf11306e8b2c91339a364b7138722745865ba987d07100065b50d28
+  languageName: node
+  linkType: hard
 
 "next@npm:^13.2.4":
   version: 13.3.1
@@ -15700,7 +15797,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:*, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:*, prop-types@npm:^15.0.0, prop-types@npm:^15.6.0, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -16006,6 +16103,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-markdown@npm:^8.0.7":
+  version: 8.0.7
+  resolution: "react-markdown@npm:8.0.7"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/prop-types": ^15.0.0
+    "@types/unist": ^2.0.0
+    comma-separated-tokens: ^2.0.0
+    hast-util-whitespace: ^2.0.0
+    prop-types: ^15.0.0
+    property-information: ^6.0.0
+    react-is: ^18.0.0
+    remark-parse: ^10.0.0
+    remark-rehype: ^10.0.0
+    space-separated-tokens: ^2.0.0
+    style-to-object: ^0.4.0
+    unified: ^10.0.0
+    unist-util-visit: ^4.0.0
+    vfile: ^5.0.0
+  peerDependencies:
+    "@types/react": ">=16"
+    react: ">=16"
+  checksum: 0f3e570975134a3382c3fe5189e04e742ae154941463bdfaab2293319da1f1585cb9b75b6f07d99f514c4d728d69cc1af3c96ab37df90003b3bcc210dd0001ba
+  languageName: node
+  linkType: hard
+
 "react-native-codegen@npm:^0.71.5":
   version: 0.71.5
   resolution: "react-native-codegen@npm:0.71.5"
@@ -16239,6 +16362,19 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 7ee8ef3aab74c7ae1d70ff34a27643d11ba1a8d62d072c767827d9ff9a520905223e567002e0bf6c772929d8ea1c781a3ba0cc4a563e92b1e3dc2eaa817ecbe8
+  languageName: node
+  linkType: hard
+
+"react-typed@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "react-typed@npm:1.2.0"
+  dependencies:
+    prop-types: ^15.6.0
+    typed.js: ^2.0.6
+  peerDependencies:
+    react: ^16.3.0
+    react-dom: ^16.3.0
+  checksum: c750d68710f918904b9bf07ea253e51d3447f9533c8277bd0afcdd20725b9e42e52ddcccd63ce93b4d0eb40db14573ccc82fce27b568b72a250d2167fc375b6f
   languageName: node
   linkType: hard
 
@@ -16488,6 +16624,18 @@ __metadata:
     mdast-util-from-markdown: ^1.0.0
     unified: ^10.0.0
   checksum: 505088e564ab53ff054433368adbb7b551f69240c7d9768975529837a86f1d0f085e72d6211929c5c42db315273df4afc94f3d3a8662ffdb69468534c6643d29
+  languageName: node
+  linkType: hard
+
+"remark-rehype@npm:^10.0.0":
+  version: 10.1.0
+  resolution: "remark-rehype@npm:10.1.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+    "@types/mdast": ^3.0.0
+    mdast-util-to-hast: ^12.1.0
+    unified: ^10.0.0
+  checksum: b9ac8acff3383b204dfdc2599d0bdf86e6ca7e837033209584af2e6aaa6a9013e519a379afa3201299798cab7298c8f4b388de118c312c67234c133318aec084
   languageName: node
   linkType: hard
 
@@ -16968,6 +17116,16 @@ __metadata:
     ajv-formats: ^2.1.1
     ajv-keywords: ^5.1.0
   checksum: 745e7293c6b6c84940de16753c207311da821aa9911b9e2d158cfd9ffc5bf1f880147abbbe775b96cb8cd3c7f48890950fe0164f54eed9a8aabb948ebf8a3fdd
+  languageName: node
+  linkType: hard
+
+"section-matter@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "section-matter@npm:1.0.0"
+  dependencies:
+    extend-shallow: ^2.0.1
+    kind-of: ^6.0.0
+  checksum: 3cc4131705493b2955729b075dcf562359bba66183debb0332752dc9cad35616f6da7a23e42b6cab45cd2e4bb5cda113e9e84c8f05aee77adb6b0289a0229101
   languageName: node
   linkType: hard
 
@@ -17749,6 +17907,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"strip-bom-string@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "strip-bom-string@npm:1.0.0"
+  checksum: 5635a3656d8512a2c194d6c8d5dee7ef0dde6802f7be9413b91e201981ad4132506656d9cf14137f019fd50f0269390d91c7f6a2601b1bee039a4859cfce4934
+  languageName: node
+  linkType: hard
+
 "strip-bom@npm:^3.0.0":
   version: 3.0.0
   resolution: "strip-bom@npm:3.0.0"
@@ -17798,7 +17963,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-to-object@npm:^0.4.1":
+"style-to-object@npm:^0.4.0, style-to-object@npm:^0.4.1":
   version: 0.4.1
   resolution: "style-to-object@npm:0.4.1"
   dependencies:
@@ -18324,6 +18489,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"trim-lines@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "trim-lines@npm:3.0.1"
+  checksum: e241da104682a0e0d807222cc1496b92e716af4db7a002f4aeff33ae6a0024fef93165d49eab11aa07c71e1347c42d46563f91dfaa4d3fb945aa535cdead53ed
+  languageName: node
+  linkType: hard
+
 "trough@npm:^2.0.0":
   version: 2.1.0
   resolution: "trough@npm:2.1.0"
@@ -18604,6 +18776,13 @@ __metadata:
     for-each: ^0.3.3
     is-typed-array: ^1.1.9
   checksum: 2228febc93c7feff142b8c96a58d4a0d7623ecde6c7a24b2b98eb3170e99f7c7eff8c114f9b283085cd59dcd2bd43aadf20e25bba4b034a53c5bb292f71f8956
+  languageName: node
+  linkType: hard
+
+"typed.js@npm:^2.0.6":
+  version: 2.0.132
+  resolution: "typed.js@npm:2.0.132"
+  checksum: f4a612b44f9d0d3cc8dc79739b6b1a22a021941a0889b9ae57edbbede0a2bc1ea698c2ad5cf1814e42859a4fcca2fae87b222ceca2a3f7425ece9affa1ff55c6
   languageName: node
   linkType: hard
 
@@ -18955,7 +19134,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-loader@npm:^4.1.1":
+"url-loader@npm:^4.1.0, url-loader@npm:^4.1.1":
   version: 4.1.1
   resolution: "url-loader@npm:4.1.1"
   dependencies:

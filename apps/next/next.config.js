@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const { withTamagui } = require('@tamagui/next-plugin')
+const withImages = require('next-images')
 const { join } = require('path')
 
 const boolVals = {
@@ -36,6 +37,7 @@ Remove this log in next.config.js.
 `)
 
 const plugins = [
+  withImages,
   withTamagui({
     config: './tamagui.config.ts',
     components: ['tamagui', '@my/ui'],
@@ -87,6 +89,15 @@ module.exports = function () {
       scrollRestoration: true,
       legacyBrowsers: false,
     },
+    webpack(config) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback, // if you miss it, all the other options in fallback, specified
+        // by next.js will be dropped. Doesn't make much sense, but how it is
+        fs: false, // the solution
+      }
+
+      return config
+    },    
   }
 
   for (const plugin of plugins) {
