@@ -2,14 +2,20 @@ import { H1, H2, Image, YStack, Text, Stack, XStack, Button } from '@my/ui'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
 import CONSTANTS from '../../../../lib/constants'
+import { Linking } from 'react-native'
+import useWindowSize from 'app/lib/hooks/useWindowSize'
 
-const bbcMaestroStoreMockup = '/home/case-studies/bbcmaestro-mocked-store.png'
+const bbcMaestroDesktop = '/home/case-studies/bbcmaestro-desktop.png'
+const bbcMaestroMobile = '/home/case-studies/bbcmaestro-mobile.png'
 
 export function BBCMaestroCaseStudy() {
   const [containerDimensions, setContainerDimensions] = useState<{
     height: number | undefined
     width: number | undefined
   }>({ width: undefined, height: undefined })
+
+  const windowSize = useWindowSize();
+  const isPortrait = (windowSize?.height ?? 0) > (windowSize?.width ?? 0);
 
   return (
     <Stack flex={1} py="$5" space="$5" backgroundColor="#d55a00" ai="center">
@@ -36,7 +42,7 @@ export function BBCMaestroCaseStudy() {
         <XStack flex={1} flexWrap="wrap">
           <Stack flex={1}>
             <Image
-              source={{uri: bbcMaestroStoreMockup}}
+              source={{uri: isPortrait ? bbcMaestroMobile :bbcMaestroDesktop}}
               aspectRatio={0.75}
               width={(containerDimensions.width || 1) * 0.9}
               maxHeight={500}
@@ -66,8 +72,8 @@ export function BBCMaestroCaseStudy() {
           </Stack>
         </XStack>
         <Stack alignItems="flex-start" pb="$5">
-          <Button flex={0} backgroundColor="#ffffff" color="#d55a00" size="$5">
-            Find out about BBC Maestro
+          <Button flex={0} backgroundColor="#ffffff" color="#d55a00" size="$5" onPress={() => Linking.openURL("https://apps.apple.com/gb/app/bbc-maestro/id1631849210")}>
+            Download the app
           </Button>
         </Stack>
       </YStack>

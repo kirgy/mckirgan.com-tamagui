@@ -2,6 +2,7 @@ import { Stack, Image, Text, YStack, Button } from '@my/ui/src'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
 import CONSTANTS from '../../../../lib/constants'
+import { Linking } from 'react-native'
 
 const bbcMaestroStoreMockup = '/home/case-studies/carescribe-app-screenshot.png'
 
@@ -66,7 +67,7 @@ const CarescribeCaseStudy = () => {
           </Text>
         </Stack>
         <Stack flexShrink={1} pb="$5" alignItems="flex-start">
-          <Button flex={0} backgroundColor="#53a9ae" color="#ffffff" size="$5">
+          <Button flex={0} backgroundColor="#53a9ae" color="#ffffff" size="$5" onPress={()=>Linking.openURL("https://caption-ed.com/product-overview/")}>
             Find out about Caption.Ed
           </Button>
         </Stack>

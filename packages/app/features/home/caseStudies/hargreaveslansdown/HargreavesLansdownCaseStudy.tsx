@@ -2,6 +2,7 @@ import { H1, H2, Image, YStack, Text, Stack, XStack, Button } from '@my/ui'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
 import CONSTANTS from '../../../../lib/constants'
+import { Linking } from 'react-native'
 
 const hlMockup = '/home/case-studies/hl-mocked.png'
 
@@ -67,8 +68,8 @@ export function HargreavesLansdownCaseStudy() {
           </Stack>
         </XStack>
         <Stack alignItems="flex-start" pb="$5">
-          <Button flex={0} backgroundColor="#ffffff" color="#00deb2" size="$5">
-            Find out about HL
+          <Button flex={0} backgroundColor="#ffffff" color="#00deb2" size="$5" onPress={() => Linking.openURL("https://www.hl.co.uk/savings/cash-isa")}>
+            Checkout HL's Cash ISA
           </Button>
         </Stack>
       </YStack>

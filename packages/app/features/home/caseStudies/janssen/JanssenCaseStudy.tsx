@@ -2,6 +2,7 @@ import { H1, H2, Image, YStack, Text, Stack, XStack, Button } from '@my/ui'
 import CaseStudyTitle from 'app/features/home/caseStudies/CaseStudyTitle'
 import { useState } from 'react'
 import CONSTANTS from '../../../../lib/constants'
+import { Linking } from 'react-native'
 
 const expertOnCallMockup = '/home/case-studies/expert-on-call-mockup.png'
 
@@ -74,7 +75,7 @@ export function JanssenCaseStudy() {
           </Stack>
         </XStack>
         <Stack alignItems="flex-start" pb="$5">
-          <Button flex={0} backgroundColor="#00367f" color="#ffffff" size="$5">
+          <Button flex={0} backgroundColor="#00367f" color="#ffffff" size="$5" onPress={()=> Linking.openURL("https://www.janssen.com/")}>
             Find out about Janssen
           </Button>
         </Stack>
