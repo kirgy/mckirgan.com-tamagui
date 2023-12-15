@@ -97,7 +97,17 @@ module.exports = function () {
       }
 
       return config
-    },    
+    },   
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'secure.gravatar.com',
+          port: '',
+          pathname: '/**/**',
+        },
+      ],
+    },     
   }
 
   for (const plugin of plugins) {

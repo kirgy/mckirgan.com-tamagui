@@ -2,11 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import { format } from 'date-fns'
 import CONSTANTS from 'app/lib/constants'
+import { OGType } from './types'
 
-export enum OGType {
-  article = 'article',
-  website = 'website',
-}
 
 type SocialMetaProps = {
   type: OGType
