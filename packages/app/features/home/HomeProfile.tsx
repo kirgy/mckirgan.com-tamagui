@@ -65,8 +65,8 @@ export default function HomeProfile({ workExcerpts, handleScrollToCaseStudy }: H
       backgroundColor="#06050c"
     >
       <SocialMeta type={ OGType.website } 
-        title="Chris McKirgan, Software Engineer"
-        description="Web developer, public speaker, hacker & Jesus follower"
+        title="Chris McKirgan"
+        description="React Native Software Engineer"
         url={`${CONSTANTS.DOMAIN_URL}`}
         publishedDate={new Date("2023-12-15T15:01:40+00:00")}
         image={{
