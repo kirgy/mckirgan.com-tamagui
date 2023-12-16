@@ -41,7 +41,7 @@ const WebMenuSheet = ({ menuOpen, setMenuOpen }: WebMenuSheet): JSX.Element => {
       modal={true}
       open={menuOpen}
       onOpenChange={setMenuOpen}
-      snapPoints={[90, 23]}
+      snapPoints={[90]}
       dismissOnSnapToBottom
       position={position}
       onPositionChange={setPosition}
