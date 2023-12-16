@@ -11,7 +11,9 @@ import { BBCMaestroCaseStudy } from 'app/features/home/caseStudies/bbcMaestro/BB
 import CarescribeCaseStudy from 'app/features/home/caseStudies/carescribe/CarescribeCaseStudy'
 import { JanssenCaseStudy } from 'app/features/home/caseStudies/janssen/JanssenCaseStudy'
 import { HargreavesLansdownCaseStudy } from 'app/features/home/caseStudies/hargreaveslansdown/HargreavesLansdownCaseStudy'
+import { SalveCaseStudy } from 'app/features/home/caseStudies/salve/SalveCaseStudy'
 
+const logoSalve = '/home/assets/logos/salve.png'
 const logoBBCMaestro = '/home/assets/logos/bbcmaestro.png'
 const logoJanssen = '/home/assets/logos/janssenoncology.jpg'
 const logoCarescribe = '/home/assets/logos/carescribe.jpeg'
@@ -25,6 +27,12 @@ export type WorkExcerpts = Array<{
 }>
 
 const WORK_EXCERPTS: WorkExcerpts = [
+  {
+    company: 'SALVE',
+    text: 'I helped patients through the journey of infertility treatment.',
+    image: logoSalve,
+    imageRatio: 1,
+  },
   {
     company: 'BBCMAESTRO',
     text: 'I put the worlds experts at your fingertips.',
@@ -172,15 +180,18 @@ export function HomeScreen() {
         </YStack>
 
         <Stack minHeight={windowHeight} flex={1} onLayout={(event) => setCaseStudyLayout(event, 0)}>
+          <SalveCaseStudy />
+        </Stack>
+        <Stack minHeight={windowHeight} flex={1} onLayout={(event) => setCaseStudyLayout(event, 1)}>
           <BBCMaestroCaseStudy />
         </Stack>
-        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 1)}>
+        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 2)}>
           <CarescribeCaseStudy />
         </Stack>
-        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 2)}>
+        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 3)}>
           <JanssenCaseStudy />
         </Stack>
-        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 3)}>
+        <Stack minHeight={windowHeight} onLayout={(event) => setCaseStudyLayout(event, 4)}>
           <HargreavesLansdownCaseStudy />
         </Stack>
       </YStack>
